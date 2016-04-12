@@ -8,7 +8,7 @@
 <body>
 <?php
 $HostName="localhost";
-$db_name="ttest";
+$db_name="webapp";
 $LoginName="root";
 $LoginPassword="";
 
@@ -27,24 +27,20 @@ $LoginPassword="";
   <?php
 	while($row = mysql_fetch_array($result)){
 	?>
-    <form name="myform" method="get" action="update2.php">
-<input type="hidden" name="person_id" value="<?php echo "$row[person_id]"?>" />
-  الاسم <input type="text" name="person_name" value="<?php echo "$row[person_name]"?>" />
-
-
-
- السن<input type="text" name="person_age" value=" <?php echo "$row[person_age]"?>">
-  <input type="submit" value="تعديل" /><hr />
+    <form name="myform" method="get">
+<input type="hidden" name="u_id" value="<?php echo "$row[user_id]"?>" />
+ Name<input type="text" name="u_name" value="<?php echo "$row[user_name]"?>" />
+Password<input type="text" name="u_password" value=" <?php echo "$row[user_password]"?>">
+  <input type="submit" value="حذف" /><hr />
 </form>
   <?php
 	;}
 	 mysql_close($con);
 	?>
     
-    
     <?php
 $HostName="localhost";
-$db_name="ttest";
+$db_name="webapp";
 $LoginName="root";
 $LoginPassword="";   
 ?>
@@ -58,9 +54,9 @@ $LoginPassword="";
   
   	mysql_select_db($db_name , $con);
 	
-	$person_id= $_GET[person_id] ;
-	if ( isset($_GET['person_id'])) {
-	$sql = "DELETE FROM persons WHERE person_id ='$person_id'" ;}
+	$u_id= $_GET['u_id'] ;
+	if ( isset($_GET['u_id'])) {
+	$sql = "DELETE FROM users WHERE user_id ='$u_id'" ;}
 	
 	mysql_query($sql,$con) ;
 	
