@@ -19,7 +19,7 @@ $LoginPassword="";
 	if (!$con){die('Could not connect: ' . mysql_error());}
   	mysql_select_db($db_name , $con);
 		mysql_query("set names 'utf8';");
-	$sql = "SELECT * FROM persons" ;
+	$sql = "SELECT * FROM users" ;
 	
 	$result = mysql_query($sql,$con) ;
 	?>
@@ -27,9 +27,9 @@ $LoginPassword="";
   <?php
 	while($row = mysql_fetch_array($result)){
 	?>
-    <form name="myform" method="get">
+<form name="myform" method="get">
 <input type="hidden" name="u_id" value="<?php echo "$row[user_id]"?>" />
- Name<input type="text" name="u_name" value="<?php echo "$row[user_name]"?>" />
+ Name: <input type="text" name="u_name" value="<?php echo "$row[user_name]"?>" />
 Password<input type="text" name="u_password" value=" <?php echo "$row[user_password]"?>">
   <input type="submit" value="حذف" /><hr />
 </form>
@@ -37,8 +37,8 @@ Password<input type="text" name="u_password" value=" <?php echo "$row[user_passw
 	;}
 	 mysql_close($con);
 	?>
-    
-    <?php
+
+<?php
 $HostName="localhost";
 $db_name="webapp";
 $LoginName="root";
@@ -54,14 +54,15 @@ $LoginPassword="";
   
   	mysql_select_db($db_name , $con);
 	
-	$u_id= $_GET['u_id'] ;
+	$uu_id= $_GET['u_id'] ;
 	if ( isset($_GET['u_id'])) {
-	$sql = "DELETE FROM users WHERE user_id ='$u_id'" ;}
+	$sql = "DELETE FROM users WHERE user_id ='$uu_id'" ;}
 	
 	mysql_query($sql,$con) ;
 	
   mysql_close($con);
   
 ?>
+
 </body>
 </html>
