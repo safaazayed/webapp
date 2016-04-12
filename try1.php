@@ -6,10 +6,35 @@
 </head>
 
 <body>
-<?php 
-echo "wellcome team";
+<?php
+$HostName="localhost";
+$db_name="webapp";
+$LoginName="root";
+$LoginPassword="";
 
-
+   
 ?>
+ <?php
+	$con = mysql_connect($HostName,$LoginName,$LoginPassword);
+	if (!$con){die('Could not connect: ' . mysql_error());}
+  	mysql_select_db($db_name , $con);
+		mysql_query("set names 'utf8';");
+	$sql = "SELECT * FROM users" ;
+	
+	$result = mysql_query($sql,$con) ;
+	?>
+
+  <?php
+	while($row = mysql_fetch_array($result)){
+	?>
+
+  Id <?php echo "$row[user_id]"."   "?>
+
+  Name <?php echo "$row[user_name]"."   "?>
+ Password <?php echo "$row[user_password]"."<hr>"?>
+  <?php
+	;}
+	 mysql_close($con);
+	?>
 </body>
 </html>
